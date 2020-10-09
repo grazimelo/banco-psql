@@ -1,1 +1,1 @@
-projeto para treinamento em banco de dados PostgreSQl
+projeto para treinamento em banco de dados PostgreSQL
