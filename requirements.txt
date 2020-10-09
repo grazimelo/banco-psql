@@ -1,0 +1,4 @@
+pandas
+numpy
+seaborn 
+psycopg2-binary
