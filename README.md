@@ -1,27 +1,38 @@
-projeto para treinamento em banco de dados PostgreSQL
+Projeto para treinamento em banco de dados PostgreSQL. 
 
-COMO RODAR O PROJETO: 
+## Como rodar o projeto 
 
-git clone https://github.com/grazimelo/Banco_psql.git
+```
+git clone https://github.com/grazimelo/banco-psql.git
+cd banco-psql
+python -m venv .venv
+```
 
-Digite o comando: 
-cd Banco_psql
+Para ativar a virtualenv  digite:
 
-Digite o comando: 
-cd env_psql
-
-Para entrar na pasta da virtualenv digite o comando: 
-ls 
-
-Para ativar a virtualenv  digite: 
-source bin/activate 
-
-Para voltar, digite: 
-cd ..
+```
+source .venv/bin/activate
+```
 
 Para instalar as dependências:
+
+```
 pip install -r requirements.txt 
+```
 
-Após as intalações da dependências digite:  
+## Criando banco de dados
+
+```
+sudo su - postgres
+createdb meu_db
+createuser -P meu_usuario
+psql meu_db
+GRANT ALL PRIVILEGES ON DATABASE meu_db TO meu_usuario;
+```
+
+
+Após a intalação das dependências digite: 
+
+```
 jupyter-notebook
-
+```
