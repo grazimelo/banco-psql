@@ -24,10 +24,10 @@ pip install -r requirements.txt
 
 ```
 sudo su - postgres
-createdb meu_db
-createuser -P meu_usuario
+createdb my_db
+createuser -P m_uysuario
 psql meu_db
-GRANT ALL PRIVILEGES ON DATABASE meu_db TO meu_usuario;
+GRANT ALL PRIVILEGES ON DATABASE meu_db TO my_usuario;
 ```
 
 

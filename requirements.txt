@@ -2,3 +2,6 @@ pandas
 numpy
 seaborn 
 psycopg2-binary
+python-decouple
+jupyter
+xlrd
