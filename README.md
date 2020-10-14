@@ -25,9 +25,9 @@ pip install -r requirements.txt
 ```
 sudo su - postgres
 createdb my_db
-createuser -P m_uysuario
+createuser -P my_usuario
 psql meu_db
-GRANT ALL PRIVILEGES ON DATABASE meu_db TO my_usuario;
+GRANT ALL PRIVILEGES ON DATABASE my_db TO my_usuario;
 ```
 
 
