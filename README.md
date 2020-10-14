@@ -26,7 +26,7 @@ pip install -r requirements.txt
 sudo su - postgres
 createdb my_db
 createuser -P my_usuario
-psql meu_db
+psql my_db
 GRANT ALL PRIVILEGES ON DATABASE my_db TO my_usuario;
 ```
 
