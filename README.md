@@ -33,7 +33,7 @@ GRANT ALL PRIVILEGES ON DATABASE my_db TO my_usuario;
 Você também pode criar o banco de dados desse jeito:
 
 ```
-CREATE ROLE my_usuario ENCRYPTED PASSWORD '1234' login;
+CREATE ROLE my_usuario ENCRYPTED PASSWORD 'suasenha' login;
 CREATE DATABASE my_db OWNER my_usuario;
 ```
 
