@@ -33,6 +33,8 @@ GRANT ALL PRIVILEGES ON DATABASE my_db TO my_usuario;
 Você também pode criar o banco de dados desse jeito:
 
 ```
+sudo su - postgres
+psql
 CREATE ROLE my_usuario ENCRYPTED PASSWORD 'suasenha' login;
 CREATE DATABASE my_db OWNER my_usuario;
 ```
