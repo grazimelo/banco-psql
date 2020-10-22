@@ -35,7 +35,7 @@ python gen_data.py
 
 ... teremos 5 tabelas, conforme a ilustração a seguir:
 
-img
+![diagrama](diagrama.png)
 
 Note que o **preço de venda** está desatualizado, pois ele precisa ser calculado em **dólar**, e o dólar está R$ 5,60.
 
