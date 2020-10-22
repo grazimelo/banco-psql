@@ -53,19 +53,19 @@ pip install -r requirements.txt
 
 ```
 sudo su - postgres
-createdb my_db
-createuser -P my_user
-psql my_db
-GRANT ALL PRIVILEGES ON DATABASE my_db TO my_user;
+psql
+CREATE ROLE my_user ENCRYPTED PASSWORD 'suasenha' login;
+CREATE DATABASE my_db OWNER my_user;
 ```
 
 ### Opção 2
 
 ```
 sudo su - postgres
-psql
-CREATE ROLE my_user ENCRYPTED PASSWORD 'suasenha' login;
-CREATE DATABASE my_db OWNER my_user;
+createdb my_db
+createuser -P my_user
+psql my_db
+GRANT ALL PRIVILEGES ON DATABASE my_db TO my_user;
 ```
 
 
