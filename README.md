@@ -1,6 +1,6 @@
 Projeto para treinamento em banco de dados PostgreSQL.
 
-# Desafio 1 - importar dados de planilha Excel
+### Desafio 1 - importar dados de planilha Excel
 
 Dada uma planilha em Excel, inserir os dados da planilha num banco de dados PostgreSQL.
 
@@ -16,7 +16,7 @@ Passos:
 6. Coloque seu projeto no Gitlab, ou Github pessoal e me manda o link do repositório
 
 
-# Desafio 2 - importar dados de planilhas relacionadas
+### Desafio 2 - importar dados de planilhas relacionadas
 
 Dada uma planilha com dados de Produtos e outra de Categorias, inserir os dados num banco de dados PostgreSQL, relacionando cada produto com sua categoria.
 
@@ -25,7 +25,7 @@ Os passos são idênticos aos anteriores.
 Coloque tudo no mesmo repositório.
 
 
-# Desafio 3 - importar todas as tabelas relacionadas
+### Desafio 3 - importar todas as tabelas relacionadas
 
 Rodando o script...
 
@@ -49,7 +49,7 @@ Note que o **preço de venda** está desatualizado, pois ele precisa ser calcula
 https://gist.github.com/rg3915/1d9e49e14d610dbd4cfc03422012e000
 
 
-# Desafio 4 - repita o desafio 3 SEM Pandas.
+### Desafio 4 - repita o desafio 3 SEM Pandas.
 
 **Dica:** monte uma lista com o script a seguir:
 
