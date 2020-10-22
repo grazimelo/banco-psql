@@ -10,11 +10,6 @@ import pandas as pd
 from decouple import config
 from pprint import pprint
 
-path = 'projeto_psql'
-df_categorias = pd.read_excel(f'{path}/categorias.xlsx')
-df_produtos = pd.read_excel(f'{path}/produtos.xlsx')
-df_produtos_com_categoria = pd.read_excel(f'{path}/produtos-com-categoria.xlsx')
-
 
 def connection():
     # Conectando no banco
@@ -41,81 +36,88 @@ def connection():
         print("Error while connecting to PostgreSQL", error)
 
 
-connection = connection()
-cursor = connection.cursor()
-
-
-# https://gist.github.com/rg3915/0f63ee9bde818c4a56abb110c94b855b
 def get_data(items, field='categoria'):
     '''
     Lê os dados para extrair id e um outro campo como identificador único
     e monta um dicionário.
+    # https://gist.github.com/rg3915/0f63ee9bde818c4a56abb110c94b855b
     '''
     my_dict = {}
     for item in items:
         my_dict[str(item['id'])] = item[field]
     return my_dict
 
-# Monta uma lista de categorias.
-items = df_categorias.T.apply(dict).tolist()
 
-# Monta um dicionário de categorias.
-dict_categoria = get_data(items)
-
-
-# Tabela categoria
-for i, row in df_categorias.iterrows():
-    name = row["categoria"]
-    cursor.execute(f"INSERT INTO categoria (categoria) VALUES ('{name}') ON CONFLICT DO NOTHING")  # noqa
+def insert_categoria():
+    for i, row in df_categorias.iterrows():
+        name = row["categoria"]
+        cursor.execute(f"INSERT INTO categoria (categoria) VALUES ('{name}') ON CONFLICT DO NOTHING")  # noqa
+    connection.commit()
 
 
-connection.commit()
+def insert_produto():
+    for i, row in df_produtos.iterrows():
+        produto = row["produto"]
+        preco = row["preco"]
+        cursor.execute(f"""
+            INSERT INTO produto (produto, preco) VALUES ('{produto}','{preco}')
+            ON CONFLICT DO NOTHING
+        """)
+    connection.commit()
 
 
-cursor.execute("SELECT * FROM categoria;")
-pprint(cursor.fetchall())
+def insert_produtos_com_categoria():
+    for produto in df_produtos_com_categoria.itertuples():
+        campo = dict_categoria.get(str(produto.categoria))
+        cursor.execute(f"SELECT * FROM categoria WHERE categoria='{campo}';")
+        categoria = cursor.fetchall()
+        categoria_id = categoria[0][0]
+        nome = produto.produto
+        preco = produto.preco
+        categoria_id = int(categoria_id)
+        insert_into_sql = f"""
+            INSERT INTO produto_categoria (produto, preco, categoria_id)
+            VALUES ('{nome}',{preco},{categoria_id}) ON CONFLICT DO NOTHING
+        """
+        cursor.execute(insert_into_sql)
+    connection.commit()
 
 
-# Tabela produto
-for i, row in df_produtos.iterrows():
-    produto = row["produto"]
-    preco = row["preco"]
-    cursor.execute(f"INSERT INTO produto (produto, preco) VALUES ('{produto}','{preco}') ON CONFLICT DO NOTHING")  # noqa
+if __name__ == '__main__':
+    path = 'projeto_psql'
+    df_categorias = pd.read_excel(f'{path}/categorias.xlsx')
+    df_produtos = pd.read_excel(f'{path}/produtos.xlsx')
+    df_produtos_com_categoria = pd.read_excel(f'{path}/produtos-com-categoria.xlsx')
 
+    connection = connection()
+    cursor = connection.cursor()
 
-connection.commit()
+    # Monta uma lista de categorias.
+    items = df_categorias.T.apply(dict).tolist()
 
+    # Monta um dicionário de categorias.
+    dict_categoria = get_data(items)
 
-cursor.execute("SELECT * FROM produto;")
-pprint(cursor.fetchall())
+    insert_categoria()
 
+    cursor.execute("SELECT * FROM categoria;")
+    pprint(cursor.fetchall())
 
-for produto in df_produtos_com_categoria.itertuples():
-    campo = dict_categoria.get(str(produto.categoria))
-    cursor.execute(f"SELECT * FROM categoria WHERE categoria='{campo}';")
-    categoria = cursor.fetchall()
-    categoria_id = categoria[0][0]
-    nome = produto.produto
-    preco = produto.preco
-    categoria_id = int(categoria_id)
-    insert_into_sql = f"""
-        INSERT INTO produto_categoria (produto, preco, categoria_id)
-        VALUES ('{nome}',{preco},{categoria_id}) ON CONFLICT DO NOTHING
-    """
-    cursor.execute(insert_into_sql)
+    insert_produto()
 
+    cursor.execute("SELECT * FROM produto;")
+    pprint(cursor.fetchall())
 
-connection.commit()
+    insert_produtos_com_categoria()
 
-cursor.execute("SELECT * FROM produto_categoria;")
-pprint(cursor.fetchall())
+    cursor.execute("SELECT * FROM produto_categoria;")
+    pprint(cursor.fetchall())
 
-cursor.execute("""
-    SELECT * FROM produto_categoria as p INNER JOIN categoria ON 
-    (p.categoria_id = categoria.id) ORDER BY p.id;
-    """)
-result = cursor.fetchall()
+    cursor.execute("""
+        SELECT * FROM produto_categoria as p INNER JOIN categoria ON 
+        (p.categoria_id = categoria.id) ORDER BY p.id;
+        """)
+    result = cursor.fetchall()
 
-
-res = pd.DataFrame(result, columns=['id', 'produto', 'preco', 'categoria_id', 'id', 'categoria'])  # noqa
-print(res)
+    res = pd.DataFrame(result, columns=['id', 'produto', 'preco', 'categoria_id', 'id', 'categoria'])  # noqa
+    print(res)
