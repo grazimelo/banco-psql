@@ -111,3 +111,11 @@ http://pythonclub.com.br/tutorial-postgresql.html
 https://github.com/juliano777/pgsql_fs2w/blob/master/postgresql_sql_basico.pdf
 
 https://github.com/rg3915/fast-database
+
+https://gist.github.com/rg3915/4ffb0bfdccf1a205ee1761185730411d
+
+https://gist.github.com/rg3915/0f63ee9bde818c4a56abb110c94b855b
+
+https://gist.github.com/rg3915/1d9e49e14d610dbd4cfc03422012e000
+
+https://gist.github.com/rg3915/5fb3a2e7338115bc92e82b7a9a2b372b
