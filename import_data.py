@@ -10,6 +10,8 @@ import pandas as pd
 from decouple import config
 from pprint import pprint
 
+# DML - data manipulation language
+
 
 def connection():
     # Conectando no banco

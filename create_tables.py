@@ -6,8 +6,6 @@ https://gist.github.com/rg3915/4ffb0bfdccf1a205ee1761185730411d
 import psycopg2
 from decouple import config
 
-# DML - data manipulation language
-
 
 def connection():
     # Conectando no banco

@@ -108,3 +108,9 @@ venv.bak/
 .settings
 .vscode
 node_modules
+
+categoria.xlsx
+cliente.xlsx
+itens_venda.xlsx
+produto.xlsx
+venda.xlsx

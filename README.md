@@ -24,7 +24,36 @@ Os passos são idênticos aos anteriores.
 
 Coloque tudo no mesmo repositório.
 
+
+# Desafio 3 - importar todas as tabelas relacionadas
+
+Rodando o script...
+
+```
+python gen_data.py
+```
+
+... teremos 5 tabelas, conforme a ilustração a seguir:
+
+img
+
+Note que o **preço de venda** está desatualizado, pois ele precisa ser calculado em **dólar**, e o dólar está R$ 5,60.
+
+1. Insira todos os dados de todas as tabelas.
+2. Atualize o **preço de venda** de cada produto, considerando o dólar a R$ 5,60.
+
+**Nota:** os registros não podem duplicar.
+
+**Dica:** considere o nome dos campos igual os campos das planilhas.
+
 https://gist.github.com/rg3915/1d9e49e14d610dbd4cfc03422012e000
+
+
+# Desafio 4 - repita o desafio 3 SEM Pandas.
+
+**Dica:** monte uma lista com o script a seguir:
+
+https://gist.github.com/rg3915/7210a14deae621822b0e3c302ba8c120
 
 
 ## Como rodar o projeto
