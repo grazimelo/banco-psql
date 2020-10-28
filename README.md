@@ -84,7 +84,7 @@ pip install -r requirements.txt
 sudo su - postgres
 psql
 CREATE ROLE my_user ENCRYPTED PASSWORD 'suasenha' login;
-CREATE DATABASE my_db OWNER my_user;
+CREATE DATABASE my_db OWNER my_usuario;
 ```
 
 ### Opção 2
@@ -94,7 +94,7 @@ sudo su - postgres
 createdb my_db
 createuser -P my_user
 psql my_db
-GRANT ALL PRIVILEGES ON DATABASE my_db TO my_user;
+GRANT ALL PRIVILEGES ON DATABASE my_db TO my_usuario;
 ```
 
 
@@ -109,7 +109,7 @@ PASSWORD=<sua_senha>
 Caso você queira deletar o usuário e o banco antes, digite
 
 ```
-psql -U postgres -c "DROP USER my_user;"
+psql -U postgres -c "DROP USER my_usuario;"
 psql -U postgres -c "DROP DATABASE my_db;"
 ```
 

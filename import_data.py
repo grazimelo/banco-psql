@@ -60,28 +60,14 @@ def insert_categoria():
 def insert_produto():
     for i, row in df_produtos.iterrows():
         produto = row["produto"]
-        preco = row["preco"]
-        cursor.execute(f"""
-            INSERT INTO produto (produto, preco) VALUES ('{produto}','{preco}')
-            ON CONFLICT DO NOTHING
-        """)
-    connection.commit()
-
+        preco = row["preco"]~
 
 def insert_produtos_com_categoria():
     for produto in df_produtos_com_categoria.itertuples():
         campo = dict_categoria.get(str(produto.categoria))
         cursor.execute(f"SELECT * FROM categoria WHERE categoria='{campo}';")
         categoria = cursor.fetchall()
-        categoria_id = categoria[0][0]
-        nome = produto.produto
-        preco = produto.preco
-        categoria_id = int(categoria_id)
-        insert_into_sql = f"""
-            INSERT INTO produto_categoria (produto, preco, categoria_id)
-            VALUES ('{nome}',{preco},{categoria_id}) ON CONFLICT DO NOTHING
-        """
-        cursor.execute(insert_into_sql)
+        categoria_id = categoria[~o_sql)
     connection.commit()
 
 
