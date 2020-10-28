@@ -92,7 +92,7 @@ CREATE DATABASE my_db OWNER my_usuario;
 ```
 sudo su - postgres
 createdb my_db
-createuser -P my_user
+createuser -P my_usuario
 psql my_db
 GRANT ALL PRIVILEGES ON DATABASE my_db TO my_usuario;
 ```
