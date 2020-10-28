@@ -83,7 +83,7 @@ pip install -r requirements.txt
 ```
 sudo su - postgres
 psql
-CREATE ROLE my_user ENCRYPTED PASSWORD 'suasenha' login;
+CREATE ROLE my_usuario ENCRYPTED PASSWORD 'suasenha' login;
 CREATE DATABASE my_db OWNER my_usuario;
 ```
 

@@ -60,7 +60,7 @@ def insert_categoria():
 def insert_produto():
     for i, row in df_produtos.iterrows():
         produto = row["produto"]
-        preco = row["preco"]~
+        preco = row["preco"]
 
 def insert_produtos_com_categoria():
     for produto in df_produtos_com_categoria.itertuples():
