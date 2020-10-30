@@ -36,28 +36,49 @@ connection = connection()
 cursor = connection.cursor()
 
 
-# Cria tabela categoria
+# Cria tabela cliente
 create_table_sql = """
-    CREATE TABLE IF NOT EXISTS categoria 
-    (id SERIAL PRIMARY KEY, categoria VARCHAR(50) UNIQUE);"""
+    CREATE TABLE IF NOT EXISTS cliente 
+    (id SERIAL PRIMARY KEY, nome VARCHAR(50) UNIQUE);"""
 
 cursor.execute(create_table_sql)
 
-# Cria tabela produto
+# Cria tabela categoria
 create_table_sql = """
-    CREATE TABLE IF NOT EXISTS produto 
-    (id SERIAL PRIMARY KEY, produto VARCHAR(50) UNIQUE, preco decimal);"""
+    CREATE TABLE IF NOT EXISTS categoria
+    (id SERIAL PRIMARY KEY, categoria VARCHAR(50) UNIQUE);"""
 
 cursor.execute(create_table_sql)
 
 
 # Cria tabela produto com categoria
 create_table_sql = """
-    CREATE TABLE IF NOT EXISTS produto_categoria 
-    (id SERIAL PRIMARY KEY, 
-    produto VARCHAR(50) UNIQUE, 
-    preco decimal, 
+    CREATE TABLE IF NOT EXISTS produto
+    (id SERIAL PRIMARY KEY,
+    produto VARCHAR(50) UNIQUE,
+    preco decimal,
     categoria_id INT REFERENCES categoria(id));"""
+
+cursor.execute(create_table_sql)
+
+# Cria tabela venda
+create_table_sql = """
+    CREATE TABLE IF NOT EXISTS venda
+    (id SERIAL PRIMARY KEY,
+    data DATE,
+    slug VARCHAR(36),
+    cliente_id INT REFERENCES cliente(id));"""
+
+cursor.execute(create_table_sql)
+
+# Cria tabela itens da venda
+create_table_sql = """
+    CREATE TABLE IF NOT EXISTS itens_venda
+    (id SERIAL PRIMARY KEY,
+    quantidade INT,
+    preco_venda DECIMAL,
+    venda_id INT REFERENCES venda(id),
+    produto_id INT REFERENCES produto(id));"""
 
 cursor.execute(create_table_sql)
 
