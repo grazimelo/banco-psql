@@ -66,7 +66,7 @@ create_table_sql = """
     CREATE TABLE IF NOT EXISTS venda
     (id SERIAL PRIMARY KEY,
     data DATE,
-    slug VARCHAR(36),
+    slug VARCHAR(36) UNIQUE,
     cliente_id INT REFERENCES cliente(id));"""
 
 cursor.execute(create_table_sql)
