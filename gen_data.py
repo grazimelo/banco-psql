@@ -1,4 +1,5 @@
 import openpyxl
+import uuid
 
 from datetime import datetime
 from random import choice, randint, random
@@ -101,6 +102,7 @@ def gen_venda(filename, clientes_id):
     ws['A1'] = 'id'
     ws['B1'] = 'data'
     ws['C1'] = 'cliente_id'
+    ws['D1'] = 'slug'
 
     max_row = ws.max_row
     number_rows = 100
@@ -113,6 +115,7 @@ def gen_venda(filename, clientes_id):
         ws[f'A{row}'] = _id
         ws[f'B{row}'] = date_to_string(data)
         ws[f'C{row}'] = choice(clientes_id)
+        ws[f'D{row}'] = str(uuid.uuid4())
     wb.save(filename)
     return ids
 
